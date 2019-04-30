@@ -20,4 +20,5 @@ module.exports = function(app) {
   
   depatch("/");
   depatch("/users");
+  depatch("/blog");
 };

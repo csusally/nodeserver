@@ -13,6 +13,6 @@ module.exports = function () {
   db.once('open', function () {
     console.log("we're connected!");
   });
-  require("../api/model/user.server.model");
+  require("../api/model/server.model");
   return db;
 }
