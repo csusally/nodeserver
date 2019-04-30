@@ -5,8 +5,10 @@ var favicon = require("serve-favicon");
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+var mongoose = require('./config/mongoose.js');
+var db = mongoose();
+
 var route = require('./route/config')
-require("./api/model/db");
 
 var app = express();
 

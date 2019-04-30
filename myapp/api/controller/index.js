@@ -1,3 +1,9 @@
-function name(params) {
-  
+var debug = require("debug")("myapp:server");
+
+function index(req, res, next) {
+  res.render('index', { title: 'Express' });
 }
+
+module.exports = {
+  index,
+};

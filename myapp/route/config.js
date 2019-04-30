@@ -1,7 +1,7 @@
 "use strict";
 const path = require("path");
 const url = require("url");
-const config = require("../config");
+const config = require("../config/config");
 
 /**
  * reqUrl is the current request url
@@ -17,7 +17,7 @@ module.exports = function(app) {
   var depatch = function(url) {
     app.use(url, getCtrl(url));
   };
-
+  
   depatch("/");
   depatch("/users");
 };
