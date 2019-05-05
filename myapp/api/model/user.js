@@ -6,11 +6,7 @@ function create(obj) {
 }
 
 function insertMany(objs) {
-  User.insertMany(objs, function(err, users) {
-    if (err) return handleError(err);
-    //created
-    return users;
-  });
+  return User.insertMany(objs);
 }
 
 function deleteUsers(obj) {
@@ -22,7 +18,13 @@ function update(params) {
 }
 
 function find(params) {
-  
+  var page = parseInt(params.page);
+  var pagesize = parseInt(params.pagesize);
+  return User.find()
+    .skip((page-1)*pagesize)
+    .limit(pagesize)
+    .exec();
+             
 }
 
 
@@ -30,5 +32,6 @@ function find(params) {
 module.exports = {
   create,
   insertMany,
-  deleteUsers
+  deleteUsers,
+  find
 };

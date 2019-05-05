@@ -1,6 +1,5 @@
 var debug = require("debug")("myapp:server");
 var mongoose = require('mongoose');
-var User = mongoose.model('User');
 var userModel = require("../model/user")
 
 function index(req, res, next) {
@@ -25,15 +24,10 @@ async function deleteUsers(req, res, next) {
   res.json(result);
 }
 
-function list(req, res, next) {
+async function list(req, res, next) {
   debug(req.query.id);
-  User.find({}, function (err, docs) {
-    if (err) {
-      res.end('Error');
-      return next(); 
-    }
-    res.json(docs); 
-  })
+  var result = await userModel.find(req.query);
+  res.json(result);
 };
 
 module.exports = {
