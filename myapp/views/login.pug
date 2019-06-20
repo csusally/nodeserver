@@ -1,0 +1,19 @@
+extends layout
+block style
+  link(rel='stylesheet', href='/stylesheets/login.css')
+
+block content
+  div(class='container-fluid')
+    form(class='form-horizontal' method='post' action="/login")
+      fieldset
+        legend #{title}
+        div(class='form-group')
+          label(for="username" class='control-label')
+          div(class='controls')
+            input(type="text" class="form-control" id="username" name="username")
+        div(class='form-group')
+          label(for="password" class='control-label')
+          div(class='controls')
+            input(type="password" class="form-control" id="password" name="password")
+        div(class='form-group')
+          button(type='submit' class="btn btn-primary") 登录

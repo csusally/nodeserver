@@ -4,7 +4,7 @@ var Blog = mongoose.model('Blog');
 
 function index(req, res, next) {
   debug(req.query.id);
-  res.send('respond with a blog resource');
+  res.send('blog:respond with a blog resource');
 };
 
 function list(req, res, next) {

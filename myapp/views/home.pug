@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  div(class='d-flex justify-content-end') 
+    a(class='btn') Welcome #{user.username}, 欢迎登录！！
+    a(class='btn' href='/logout') 退出
+
+  nav(class='navbar navbar-light bg-light justify-content-between')
+    a(class='navbar-brand mb-3') sally's website
+    div(class='d-flex align-items-center')
+      div(class="input-group mb-3")
+        input(class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search")
+        button(class="btn btn btn-outline-secondary input-group-append" type="submit") search
+
+      

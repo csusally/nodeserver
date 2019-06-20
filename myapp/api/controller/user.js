@@ -4,7 +4,7 @@ var userModel = require("../model/user")
 
 function index(req, res, next) {
   debug(req.query.id);
-  res.send('respond with a resource');
+  res.send('user:respond with a resource');
 };
 
 async function add(req, res, next) {
