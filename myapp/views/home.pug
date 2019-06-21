@@ -1,15 +1,49 @@
 extends layout
 
+block style
+  link(rel='stylesheet', href='/stylesheets/home.css')
+
+mixin article(title)
+  .article.media
+    img(src='' class="align-self-start mr-3 rounded-circle bg-secondary" alt="..."  style='width:60px;height:60px;')
+    .article-wrapper.media-body
+      h5(class="mt-0")=title
+      if block
+        block
+      else
+        p 没有提供任何内容。
+
 block content
   div(class='d-flex justify-content-end') 
     a(class='btn') Welcome #{user.username}, 欢迎登录！！
-    a(class='btn' href='/logout') 退出
+    a(class='btn ' href='/logout') 退出
 
-  nav(class='navbar navbar-light bg-light justify-content-between')
-    a(class='navbar-brand mb-3') sally's website
-    div(class='d-flex align-items-center')
-      div(class="input-group mb-3")
+  nav(class='navbar navbar-expand-lg navbar-light bg-light shadow p-3 mb-5 rounded')
+    a(class='navbar-brand' ) sally's website
+    button(class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation")
+      span(class="navbar-toggler-icon")
+    div(class="collapse navbar-collapse" id="navbarSupportedContent")
+      ul(class="navbar-nav mr-auto")
+      - var navlist = ['Home','Projects','Blogs']
+      - var activeIndex = 1
+      each item in navlist
+        if(item === navlist[activeIndex])
+          li(class="nav-item active")
+            a(class="nav-link" href="#") #{item}
+              span(class="sr-only") (current)
+        else
+          li(class="nav-item")
+            a(class="nav-link" href="#") #{item}
+      form(class="form-inline my-2 my-lg-0") 
         input(class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search")
-        button(class="btn btn btn-outline-secondary input-group-append" type="submit") search
-
-      
+        button(class="btn btn-outline-success my-2 my-sm-0" type="submit") search
+  
+  +article('Hello world')
+    p 这是第一篇文章
+    p 这是我
+    p 随便写的文章
+    p 这是我
+    p 随便写的文章 文章内容不长
+  +article('Hello world2')
+    p 这是我
+    p 随便写的文章
