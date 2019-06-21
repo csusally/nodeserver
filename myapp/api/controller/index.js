@@ -15,21 +15,25 @@ function doLogin (req, res) {
     password: 'admin'
   }
   if (req.body.username === user.username && req.body.password === user.password) {
+    req.session.user = user;
     return res.redirect('/home');
   }
-    res.redirect('/login');
+  req.session.error = '用户名或密码不正确';
+  res.redirect('/login');
 };
 
 function logout(req, res) {
+  req.session.user = null;
   res.redirect('/');
 };
 
 function home(req, res) {
-  var user = {
-    username: 'admin',
-    password: 'admin'
-  }
-  res.render('home', { title: 'Home', user: user });
+  // var user = {
+  //   username: 'admin',
+  //   password: 'admin'
+  // }
+  // res.render('home', { title: 'Home', user: user });
+  res.render("home", { title: "Home" });
 };
 
 module.exports = {

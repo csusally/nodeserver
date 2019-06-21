@@ -13,8 +13,16 @@ function getCtrl(reqUrl) {
 }
 
 module.exports = function(app) {
-  //pakage the app.use
+  //package the app.use
   var depatch = function(url) {
+    app.use(function (req, res, next) {
+      res.locals.user = req.session.user;
+      var err = req.session.error;
+      delete req.session.error;
+      res.locals.message = '';
+      if (err) res.locals.message = err ;
+      next();
+    });
     app.use(url, getCtrl(url));
   };
   

@@ -3,14 +3,31 @@ var express = require('express');
 var path = require('path');
 var favicon = require("serve-favicon");
 var cookieParser = require('cookie-parser');
+const session = require("express-session");
+const MongoStore = require("connect-mongo")(session);
+var mongoose = require("mongoose");
 var logger = require('morgan');
 
-var mongoose = require('./config/mongoose.js');
-var db = mongoose();
+var dbSet = require('./config/mongoose.js');
+var db = dbSet();
 
 var route = require('./route/config')
 
 var app = express();
+
+//新建一个mongodb连接存储session
+//根据env环境设置cookie的secure，secure：true表示只有https请求才可以设置cookie
+var sess = {
+  secret: "sally website",
+  cookie: {},
+  resave: false,
+  saveUninitialized: true,
+  store: new MongoStore({ mongooseConnection: db })
+};
+if (app.get("env") === "production") {
+  app.set("trust proxy", 1); // trust first proxy
+  sess.cookie.secure = true; // serve secure cookies
+}
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -22,6 +39,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(session(sess));
 
 app.use(express.static(path.join(__dirname, 'public')));
 
