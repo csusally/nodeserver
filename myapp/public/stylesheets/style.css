@@ -6,6 +6,15 @@ body {
 li{
   list-style:none;
 }
+
+blockquote {
+  border-left: 10px solid pink;
+  padding: 1rem;
+}
+pre{
+  background: #000;
+  color: aliceblue;
+}
 footer{
   margin: 10px auto;
   position: fixed;

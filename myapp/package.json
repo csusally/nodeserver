@@ -4,7 +4,10 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "dev": "$env:DEBUG='*';node ./bin/www"
+    "dev": "$env:DEBUG='myapp:server';node ./bin/www",
+    "build sass": "node-sass -o public/stylesheets public/scss/main.scss",
+    "watch sass": "node-sass -o public/stylesheets public/scss"
+
   },
   "dependencies": {
     "connect-mongo": "^3.0.0",
@@ -13,6 +16,7 @@
     "express": "~4.16.0",
     "express-session": "^1.16.2",
     "http-errors": "~1.6.2",
+    "jstransformer-markdown-it": "^2.1.0",
     "mongodb": "^3.2.3",
     "mongoose": "^5.5.4",
     "morgan": "~1.9.0",
