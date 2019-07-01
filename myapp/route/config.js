@@ -29,4 +29,5 @@ module.exports = function(app) {
   depatch("/");
   depatch("/users");
   depatch("/blog");
+  depatch("/wx/public");
 };

@@ -18,6 +18,12 @@ var schema = {
       votes: Number,
       favs: Number
     }
+  }),
+  AccessTokenSchema: new mongoose.Schema({
+    access_token: String,
+    expires_in: Number,
+    create_time: Number,
+    type: String
   })
 };
 
